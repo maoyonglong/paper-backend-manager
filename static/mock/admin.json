@@ -1,0 +1,20 @@
+[
+  {
+    "username": "root",
+    "type": "super",
+    "pwd": "root",
+    "time": "2019-4-5"
+  },
+  {
+    "username": "user1",
+    "type": "normal",
+    "pwd": "pwd1",
+    "time": "2019-5-4"
+  },
+  {
+    "username": "user2",
+    "type": "normal",
+    "pwd": "pwd2",
+    "time": "2019-5-9"
+  }
+]
