@@ -1,7 +1,7 @@
 const config = [
   {
     label: 'id',
-    prop: 'id',
+    prop: '_id',
     width: 180
   },
   {

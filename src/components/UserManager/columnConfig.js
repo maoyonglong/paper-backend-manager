@@ -13,12 +13,12 @@ const config = [
     width: 160
   },
   {
-    label: '电话号码',
-    prop: 'phone'
+    label: '性别',
+    prop: 'sex'
   },
   {
     label: '注册时间',
-    prop: 'registerTime'
+    prop: 'time'
   }
 ]
 

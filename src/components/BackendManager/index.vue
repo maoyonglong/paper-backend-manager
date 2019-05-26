@@ -57,6 +57,7 @@ export default {
   padding: 15px 0;
 }
 .main {
+  height: 100%;
   padding: 0;
   margin: 0 20px;
   border: 6px solid #363636;

@@ -48,6 +48,20 @@
           </el-form>
         </el-form-item>
         <div class="btn-wrap"><el-button type="primary" @click="handleExampleAdd(base.example)">添加示例</el-button></div>
+        <el-form-item v-for="(unit, unitIdx) in base.units" :key="unitIdx+(new Date()).getTime()">
+          <el-form :inline="true">
+            <el-form-item label="输入">
+              <el-input v-model="unit.input" placeholder="param1=1;param2=2"></el-input>
+            </el-form-item>
+            <el-form-item label="输出">
+              <el-input v-model="unit.output"></el-input>
+            </el-form-item>
+            <el-form-item>
+              <el-button type="danger" @click="handleUnitsDelete(base.units, unitIdx)">删除</el-button>
+            </el-form-item>
+          </el-form>
+        </el-form-item>
+        <div class="btn-wrap"><el-button type="primary" @click="handleUnitsAdd(base.units)">添加测试数据</el-button></div>
         <el-form-item label="参考答案">
           <el-input type="textarea" v-model="base.correct_answer"></el-input>
         </el-form-item>
@@ -75,6 +89,20 @@
         </el-form>
       </el-form-item>
       <div class="btn-wrap"><el-button type="primary" @click="handleExampleAdd(synthesis.example)">添加示例</el-button></div>
+      <el-form-item v-for="(unit, unitIdx) in synthesis.units" :key="unitIdx+(new Date()).getTime()">
+        <el-form :inline="true">
+          <el-form-item label="输入">
+            <el-input v-model="unit.input" placeholder="param1=1;param2=2"></el-input>
+          </el-form-item>
+          <el-form-item label="输出">
+            <el-input v-model="unit.output"></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="danger" @click="handleUnitsDelete(synthesis.units, unitIdx)">删除</el-button>
+          </el-form-item>
+        </el-form>
+      </el-form-item>
+      <div class="btn-wrap"><el-button type="primary" @click="handleUnitsAdd(synthesis.units)">添加测试数据</el-button></div>
       <el-form-item label="参考答案">
         <el-input type="textarea" v-model="synthesis.correct_answer"></el-input>
       </el-form-item>
@@ -107,6 +135,7 @@ export default {
         content: '',
         attention: '',
         example: [],
+        units: [],
         correct_answer: ''
       })
     }
@@ -114,12 +143,12 @@ export default {
       content: '',
       attention: '',
       example: [],
+      units: [],
       correct_answer: ''
     }
   },
   methods: {
     handleExampleDelete (example, idx) {
-      console.log(idx)
       example.splice(idx, 1)
     },
     handleExampleAdd (example) {
@@ -128,23 +157,62 @@ export default {
         output: ''
       })
     },
+    handleUnitsDelete (units, idx) {
+      units.splice(idx, 1)
+    },
+    handleUnitsAdd (units) {
+      units.push({
+        input: '',
+        output: ''
+      })
+    },
     handleCommit () {
+      function convertUnits (units) {
+        const result = units.map((unit, idx) => {
+          let input = unit.input
+          let params = input.split('')
+          let values = []
+          params.forEach(params => {
+            let value = JSON.parse(params.split('=')[1])
+            values.push(value)
+          })
+          console.log(values)
+          return {
+            input: values,
+            output: unit.output
+          }
+        })
+        console.log(result)
+        return result
+      }
+      const units = []
       this.selects.forEach((select, idx) => {
         select.type = 'select'
         select.index = idx
       })
-      this.bases.forEach((base, idx) => {
+      this.bases.forEach((base, idx, bases) => {
         base.type = 'base'
         base.index = idx + 40
+        units.push(convertUnits(base.units))
+        delete bases[idx].units
       })
       this.synthesis.type = 'synthesis'
       this.synthesis.index = 45
-      const paper = this.selects.concat(this.bases, [ this.synthesis ])
-      axios.post('/paperCommit', { paper }).then(res => {
-        this.$message('试卷提交成功')
-      }).catch(() => {
-        this.$message('试卷提交失败')
-      })
+      units.push(convertUnits(this.synthesis.units))
+      delete this.synthesis.units
+      axios
+        .post('/api/backend/addPaper', {
+          selects: this.selects,
+          bases: this.bases,
+          synthesis: this.synthesis,
+          units: units
+        })
+        .then(res => {
+          this.$message('试卷提交成功')
+        })
+        .catch(() => {
+          this.$message('试卷提交失败')
+        })
     }
   }
 }
@@ -155,6 +223,7 @@ export default {
   padding: 30px;
 }
 .btn-wrap {
+  margin-bottom: 20px;
   text-align: right;
 }
 </style>

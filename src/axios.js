@@ -12,9 +12,7 @@ api.interceptors.request.use(config => {
 
 api.interceptors.response.use(res => {
   if (res.status === 200) {
-    setTimeout(() => {
-      store.setState({ isMainLoading: false })
-    }, 200)
+    store.setState({ isMainLoading: false })
   }
   return res
 }, err => {

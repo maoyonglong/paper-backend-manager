@@ -131,7 +131,7 @@ export default {
             i--
           }
         }
-        this.$emit('muti-delete', selection)
+        this.$emit('delete', selection)
       })
     }
   }
