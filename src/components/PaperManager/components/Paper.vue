@@ -3,7 +3,7 @@
     <el-form>
       <el-form-item label="试卷名称">
         <el-col :span="8">
-          <el-input></el-input>
+          <el-input v-model="name"></el-input>
         </el-col>
       </el-form-item>
     </el-form>
@@ -117,6 +117,7 @@ import axios from '@/axios'
 export default {
   data () {
     return {
+      name: '',
       selects: [],
       bases: [],
       synthesis: {}
@@ -202,6 +203,7 @@ export default {
       delete this.synthesis.units
       axios
         .post('/api/backend/addPaper', {
+          name: this.name,
           selects: this.selects,
           bases: this.bases,
           synthesis: this.synthesis,

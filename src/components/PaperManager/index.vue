@@ -7,7 +7,7 @@
     @edit="handleEdit">
   </table-manager>
   <paper v-else-if="pageName==='paperImport'"></paper>
-  <watch-paper v-else-if="paperName==='paperWatch'" :paperId="paperId"></watch-paper>
+  <watch-paper v-else-if="pageName==='paperWatch'" :paperId="paperId"></watch-paper>
 </template>
 
 <script>
