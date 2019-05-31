@@ -1,0 +1,10 @@
+{
+  "week": {
+    "userCount": [0,50,51,51,67,100,200],
+    "totalVisits": [1000,1200,1212,1234,2103,3000,3100]
+  },
+  "months": {
+    "userCount": [],
+    "totalVisits": []
+  }
+}

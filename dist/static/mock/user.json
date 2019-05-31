@@ -1,0 +1,65 @@
+[
+  {
+    "username": "user1",
+    "pwd": "pwd",
+    "email": "123456789@qq.com",
+    "phone": "123456789101",
+    "registerTime": "2019-4-21"
+  },
+  {
+    "username": "user2",
+    "pwd": "pwd",
+    "email": "123456789@qq.com",
+    "phone": "123456789101",
+    "registerTime": "2019-4-21"
+  },
+  {
+    "username": "user3",
+    "pwd": "pwd",
+    "email": "123456789@qq.com",
+    "phone": "123456789101",
+    "registerTime": "2019-4-21"
+  },
+  {
+    "username": "user4",
+    "pwd": "pwd",
+    "email": "123456789@qq.com",
+    "phone": "123456789101",
+    "registerTime": "2019-4-21"
+  },
+  {
+    "username": "user5",
+    "pwd": "pwd",
+    "email": "123456789@qq.com",
+    "phone": "123456789101",
+    "registerTime": "2019-4-21"
+  },
+  {
+    "username": "user6",
+    "pwd": "pwd",
+    "email": "123456789@qq.com",
+    "phone": "123456789101",
+    "registerTime": "2019-4-21"
+  },
+  {
+    "username": "user7",
+    "pwd": "pwd",
+    "email": "123456789@qq.com",
+    "phone": "123456789101",
+    "registerTime": "2019-4-21"
+  },
+  {
+    "username": "user8",
+    "pwd": "pwd",
+    "email": "123456789@qq.com",
+    "phone": "123456789101",
+    "registerTime": "2019-4-21"
+  },
+  {
+    "username": "user9",
+    "pwd": "pwd",
+    "email": "123456789@qq.com",
+    "phone": "123456789101",
+    "registerTime": "2019-4-21"
+  }
+]
